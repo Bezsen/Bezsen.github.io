@@ -1,0 +1,621 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BEZSEN808 — Brazilian Phonk / Bass House</title>
+<meta name="description" content="Bezsen808 — Brazilian phonk & bass house producer. Warsaw underground.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=JetBrains+Mono:wght@400;500;700&family=Archivo:wght@400;500;700;900&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --black:#0a0a0a;
+    --black-2:#121212;
+    --blood:#c81e2c;
+    --blood-dim:#7a1219;
+    --bone:#e8e4dc;
+    --bone-dim:#9a958c;
+    --steel:#4a4a4a;
+    --line:#2a2a2a;
+  }
+
+  *{margin:0;padding:0;box-sizing:border-box;}
+
+  html{scroll-behavior:smooth;}
+
+  body{
+    background:var(--black);
+    color:var(--bone);
+    font-family:'Archivo',sans-serif;
+    overflow-x:hidden;
+  }
+
+  ::selection{background:var(--blood);color:var(--black);}
+
+  /* noise texture overlay */
+  body::before{
+    content:"";
+    position:fixed;
+    top:0;left:0;width:100%;height:100%;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+    pointer-events:none;
+    z-index:9999;
+    mix-blend-mode:overlay;
+  }
+
+  a{color:inherit;text-decoration:none;}
+
+  .mono{font-family:'JetBrains Mono',monospace;}
+
+  /* ---------- NAV ---------- */
+  nav{
+    position:fixed;
+    top:0;left:0;right:0;
+    z-index:100;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:22px 5vw;
+    background:linear-gradient(to bottom, rgba(10,10,10,0.95), transparent);
+  }
+  .nav-mark{
+    font-family:'Anton',sans-serif;
+    font-size:1.3rem;
+    letter-spacing:0.04em;
+    transform:skewX(-6deg);
+  }
+  .nav-mark span{color:var(--blood);}
+  .nav-links{
+    display:flex;
+    gap:28px;
+    font-family:'JetBrains Mono',monospace;
+    font-size:0.72rem;
+    letter-spacing:0.08em;
+    text-transform:uppercase;
+  }
+  .nav-links a{
+    position:relative;
+    color:var(--bone-dim);
+    transition:color 0.2s;
+  }
+  .nav-links a:hover{color:var(--bone);}
+  .nav-links a::after{
+    content:"";
+    position:absolute;
+    left:0;bottom:-6px;
+    width:0;height:1px;
+    background:var(--blood);
+    transition:width 0.25s;
+  }
+  .nav-links a:hover::after{width:100%;}
+
+  @media (max-width:700px){
+    .nav-links{display:none;}
+  }
+
+  /* ---------- HERO ---------- */
+  .hero{
+    min-height:100vh;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    padding:0 5vw;
+    position:relative;
+    border-bottom:1px solid var(--line);
+  }
+
+  .hero-eyebrow{
+    font-family:'JetBrains Mono',monospace;
+    font-size:0.75rem;
+    letter-spacing:0.25em;
+    color:var(--blood);
+    text-transform:uppercase;
+    margin-bottom:18px;
+  }
+
+  .hero-title{
+    font-family:'Anton',sans-serif;
+    font-size:clamp(3.2rem, 13vw, 9.5rem);
+    line-height:0.92;
+    letter-spacing:-0.01em;
+    text-transform:uppercase;
+    position:relative;
+    width:fit-content;
+  }
+  .hero-title .glitch-wrap{
+    position:relative;
+    display:inline-block;
+  }
+  .hero-title .glitch-wrap::before,
+  .hero-title .glitch-wrap::after{
+    content:attr(data-text);
+    position:absolute;
+    top:0;left:0;
+    width:100%;
+    opacity:0;
+  }
+  .hero-title:hover .glitch-wrap::before{
+    opacity:0.7;
+    color:var(--blood);
+    transform:translate(3px,-2px);
+    clip-path:polygon(0 0, 100% 0, 100% 45%, 0 45%);
+    animation:glitch1 0.4s steps(2) infinite;
+  }
+  .hero-title:hover .glitch-wrap::after{
+    opacity:0.7;
+    color:#3d5c3d;
+    transform:translate(-3px,2px);
+    clip-path:polygon(0 55%, 100% 55%, 100% 100%, 0 100%);
+    animation:glitch2 0.4s steps(2) infinite;
+  }
+  @keyframes glitch1{
+    0%,100%{transform:translate(3px,-2px);}
+    50%{transform:translate(5px,-1px);}
+  }
+  @keyframes glitch2{
+    0%,100%{transform:translate(-3px,2px);}
+    50%{transform:translate(-5px,1px);}
+  }
+
+  .hero-sub{
+    margin-top:28px;
+    max-width:520px;
+    font-size:1.02rem;
+    line-height:1.6;
+    color:var(--bone-dim);
+  }
+
+  .hero-meta{
+    margin-top:46px;
+    display:flex;
+    gap:38px;
+    flex-wrap:wrap;
+  }
+  .hero-meta div{
+    font-family:'JetBrains Mono',monospace;
+  }
+  .hero-meta .num{
+    font-size:1.6rem;
+    color:var(--bone);
+    font-weight:700;
+  }
+  .hero-meta .lbl{
+    font-size:0.68rem;
+    letter-spacing:0.12em;
+    color:var(--steel);
+    text-transform:uppercase;
+    margin-top:2px;
+  }
+
+  .hero-scroll{
+    position:absolute;
+    bottom:36px;
+    left:5vw;
+    font-family:'JetBrains Mono',monospace;
+    font-size:0.7rem;
+    color:var(--steel);
+    letter-spacing:0.15em;
+    display:flex;
+    align-items:center;
+    gap:10px;
+  }
+  .hero-scroll::after{
+    content:"";
+    width:1px;
+    height:30px;
+    background:var(--steel);
+    animation:scrollline 1.8s ease-in-out infinite;
+  }
+  @keyframes scrollline{
+    0%{transform:scaleY(0);transform-origin:top;}
+    50%{transform:scaleY(1);transform-origin:top;}
+    51%{transform:scaleY(1);transform-origin:bottom;}
+    100%{transform:scaleY(0);transform-origin:bottom;}
+  }
+
+  /* ---------- SECTION GENERIC ---------- */
+  section{
+    padding:120px 5vw;
+    position:relative;
+  }
+  .section-head{
+    display:flex;
+    justify-content:space-between;
+    align-items:baseline;
+    border-bottom:1px solid var(--line);
+    padding-bottom:22px;
+    margin-bottom:56px;
+    flex-wrap:wrap;
+    gap:10px;
+  }
+  .section-title{
+    font-family:'Anton',sans-serif;
+    font-size:clamp(2rem,5vw,3.2rem);
+    text-transform:uppercase;
+    letter-spacing:-0.01em;
+  }
+  .section-title .dim{color:var(--steel);}
+  .section-count{
+    font-family:'JetBrains Mono',monospace;
+    font-size:0.78rem;
+    color:var(--bone-dim);
+    letter-spacing:0.06em;
+  }
+
+  /* ---------- TRACKS ---------- */
+  #tracks{background:var(--black-2);}
+
+  .track-list{
+    display:flex;
+    flex-direction:column;
+  }
+  .track-row{
+    display:grid;
+    grid-template-columns:70px 1fr auto auto;
+    align-items:center;
+    gap:24px;
+    padding:26px 0;
+    border-bottom:1px solid var(--line);
+    position:relative;
+    transition:padding-left 0.25s ease;
+  }
+  .track-row:hover{
+    padding-left:14px;
+  }
+  .track-row:hover::before{
+    content:"";
+    position:absolute;
+    left:0;top:0;bottom:0;
+    width:3px;
+    background:var(--blood);
+  }
+  .track-idx{
+    font-family:'JetBrains Mono',monospace;
+    color:var(--steel);
+    font-size:0.85rem;
+  }
+  .track-name{
+    font-family:'Archivo',sans-serif;
+    font-weight:900;
+    font-size:clamp(1.2rem,3vw,2rem);
+    text-transform:uppercase;
+    letter-spacing:0.01em;
+    position:relative;
+    width:fit-content;
+  }
+  .track-name .glitch-wrap{position:relative;display:inline-block;}
+  .track-name .glitch-wrap::before{
+    content:attr(data-text);
+    position:absolute;top:0;left:0;width:100%;
+    opacity:0;color:var(--blood);
+  }
+  .track-row:hover .track-name .glitch-wrap::before{
+    opacity:0.6;
+    clip-path:polygon(0 20%,100% 20%,100% 55%,0 55%);
+    transform:translate(2px,0);
+    animation:glitch1 0.35s steps(2) infinite;
+  }
+  .track-tag{
+    font-family:'JetBrains Mono',monospace;
+    font-size:0.68rem;
+    letter-spacing:0.1em;
+    text-transform:uppercase;
+    color:var(--bone-dim);
+    border:1px solid var(--line);
+    padding:5px 10px;
+    white-space:nowrap;
+  }
+  .track-link{
+    font-family:'JetBrains Mono',monospace;
+    font-size:0.72rem;
+    letter-spacing:0.08em;
+    text-transform:uppercase;
+    color:var(--bone);
+    border-bottom:1px solid var(--blood);
+    padding-bottom:3px;
+    white-space:nowrap;
+  }
+  button.play-toggle{
+    background:none;
+    border:none;
+    border-bottom:1px solid var(--blood);
+    cursor:pointer;
+    font-family:'JetBrains Mono',monospace;
+  }
+  button.play-toggle:hover{color:var(--blood);}
+
+  .player-wrap{
+    max-height:0;
+    overflow:hidden;
+    transition:max-height 0.3s ease;
+  }
+  .player-wrap.open{
+    max-height:180px;
+    padding-top:14px;
+  }
+  @media (max-width:700px){
+    .track-row{grid-template-columns:40px 1fr;row-gap:12px;}
+    .track-tag,.track-link{grid-column:2;justify-self:start;}
+  }
+
+  /* ---------- SOUND / PROCESS ---------- */
+  #sound{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:60px;
+  }
+  @media (max-width:800px){
+    #sound{grid-template-columns:1fr;}
+  }
+  .sound-block p{
+    color:var(--bone-dim);
+    line-height:1.75;
+    font-size:1rem;
+    margin-bottom:20px;
+  }
+  .sound-block strong{color:var(--bone);}
+
+  .chain{
+    display:flex;
+    flex-direction:column;
+    gap:0;
+  }
+  .chain-row{
+    display:flex;
+    justify-content:space-between;
+    padding:16px 0;
+    border-bottom:1px solid var(--line);
+    font-family:'JetBrains Mono',monospace;
+    font-size:0.82rem;
+  }
+  .chain-row .step{color:var(--bone-dim);}
+  .chain-row .tool{color:var(--bone);}
+  .chain-row:first-child{border-top:1px solid var(--line);}
+
+  /* ---------- LINKS / FOLLOW ---------- */
+  #connect{
+    background:var(--black-2);
+    text-align:center;
+  }
+  #connect .section-head{
+    justify-content:center;
+    border-bottom:none;
+  }
+  .connect-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit, minmax(180px,1fr));
+    gap:1px;
+    background:var(--line);
+    max-width:900px;
+    margin:0 auto;
+  }
+  .connect-item{
+    background:var(--black);
+    padding:34px 18px;
+    transition:background 0.2s;
+  }
+  .connect-item:hover{background:var(--black-2);}
+  .connect-item .platform{
+    font-family:'JetBrains Mono',monospace;
+    font-size:0.68rem;
+    letter-spacing:0.12em;
+    text-transform:uppercase;
+    color:var(--steel);
+    margin-bottom:10px;
+  }
+  .connect-item .handle{
+    font-family:'Archivo',sans-serif;
+    font-weight:900;
+    font-size:1.1rem;
+    text-transform:uppercase;
+  }
+  .connect-item:hover .handle{color:var(--blood);}
+
+  /* ---------- FOOTER ---------- */
+  footer{
+    padding:50px 5vw;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    font-family:'JetBrains Mono',monospace;
+    font-size:0.7rem;
+    color:var(--steel);
+    letter-spacing:0.05em;
+    flex-wrap:wrap;
+    gap:14px;
+  }
+
+  /* reduced motion */
+  @media (prefers-reduced-motion: reduce){
+    *{animation:none !important; transition:none !important; scroll-behavior:auto !important;}
+  }
+
+  /* focus visibility */
+  a:focus-visible, button:focus-visible{
+    outline:2px solid var(--blood);
+    outline-offset:3px;
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-mark">BEZSEN<span>808</span></div>
+  <div class="nav-links">
+    <a href="#tracks">Tracks</a>
+    <a href="#sound">Sound</a>
+    <a href="#connect">Connect</a>
+  </div>
+</nav>
+
+<section class="hero">
+  <div class="hero-eyebrow mono">Warsaw, PL — underground transmission</div>
+  <h1 class="hero-title">
+    <span class="glitch-wrap" data-text="BRAZILIAN">BRAZILIAN</span><br>
+    <span class="glitch-wrap" data-text="PHONK.">PHONK.</span>
+  </h1>
+  <p class="hero-sub">Distorted 808s. Minimal drums. Raw MC vocals pulled out of the dark and run through a Polish basement rig. This is Bezsen808 — built on broken speakers, not clean masters.</p>
+  <div class="hero-meta">
+    <div><div class="num mono">6</div><div class="lbl">Releases out now</div></div>
+    <div><div class="num mono">5</div><div class="lbl">Platforms active</div></div>
+    <div><div class="num mono">−14</div><div class="lbl">LUFS, every master</div></div>
+  </div>
+  <div class="hero-scroll">SCROLL</div>
+</section>
+
+<section id="tracks">
+  <div class="section-head">
+    <div class="section-title">Latest <span class="dim">Drops</span></div>
+    <div class="section-count mono">06 RELEASED / 01 INCOMING</div>
+  </div>
+  <div class="track-list">
+
+    <div class="track-row" style="border-color:var(--blood-dim);">
+      <div class="track-idx mono" style="color:var(--blood);">→</div>
+      <div class="track-name"><span class="glitch-wrap" data-text="MONTAGEM NEØN X">MONTAGEM NEØN X</span></div>
+      <div class="track-tag" style="border-color:var(--blood-dim);color:var(--blood);">w/ B3Z · Out 19.06.2026</div>
+      <a class="track-link" href="https://share.google/VnQt9DyjRc2VaVIWN" target="_blank" rel="noopener">Pre-save →</a>
+    </div>
+
+    <div class="track-row">
+      <div class="track-idx mono">01</div>
+      <div class="track-name"><span class="glitch-wrap" data-text="VOID SIGNAL">VOID SIGNAL</span></div>
+      <div class="track-tag">EP · 4 Tracks</div>
+      <button class="track-link play-toggle" data-target="p1">Play ▾</button>
+    </div>
+    <div class="player-wrap" id="p1">
+      <iframe style="border-radius:0" src="https://open.spotify.com/embed/album/7jI8NHVKOBlfFPJ4BCL6D8?utm_source=generator&theme=0" width="100%" height="152" frameborder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+    </div>
+
+    <div class="track-row">
+      <div class="track-idx mono">02</div>
+      <div class="track-name"><span class="glitch-wrap" data-text="TORRA PHANTOM">TORRA PHANTOM</span></div>
+      <div class="track-tag">EP · 3 Versions</div>
+      <button class="track-link play-toggle" data-target="p2">Play ▾</button>
+    </div>
+    <div class="player-wrap" id="p2">
+      <iframe style="border-radius:0" src="https://open.spotify.com/embed/album/3EcaIvZOMyN3KRnoXmSDeT?utm_source=generator&theme=0" width="100%" height="152" frameborder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+    </div>
+
+    <div class="track-row">
+      <div class="track-idx mono">03</div>
+      <div class="track-name"><span class="glitch-wrap" data-text="NO FUNDO">NO FUNDO</span></div>
+      <div class="track-tag">EP</div>
+      <button class="track-link play-toggle" data-target="p3">Play ▾</button>
+    </div>
+    <div class="player-wrap" id="p3">
+      <iframe style="border-radius:0" src="https://open.spotify.com/embed/album/07LXciUHPZmRNfNO4hdTru?utm_source=generator&theme=0" width="100%" height="152" frameborder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+    </div>
+
+    <div class="track-row">
+      <div class="track-idx mono">04</div>
+      <div class="track-name"><span class="glitch-wrap" data-text="MONTAGEM BEAT">MONTAGEM BEAT</span></div>
+      <div class="track-tag">EP · Bass House</div>
+      <button class="track-link play-toggle" data-target="p4">Play ▾</button>
+    </div>
+    <div class="player-wrap" id="p4">
+      <iframe style="border-radius:0" src="https://open.spotify.com/embed/album/5qRnhoPJpRp88cKLJ4bO6X?utm_source=generator&theme=0" width="100%" height="152" frameborder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+    </div>
+
+    <div class="track-row">
+      <div class="track-idx mono">05</div>
+      <div class="track-name"><span class="glitch-wrap" data-text="NIGHTMARE BOTA">NIGHTMARE BOTA</span></div>
+      <div class="track-tag">Single · Brazilian Phonk</div>
+      <button class="track-link play-toggle" data-target="p5">Play ▾</button>
+    </div>
+    <div class="player-wrap" id="p5">
+      <iframe style="border-radius:0" src="https://open.spotify.com/embed/album/5lUEBoAVZr468iVUus8ibM?utm_source=generator&theme=0" width="100%" height="152" frameborder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+    </div>
+
+    <div class="track-row">
+      <div class="track-idx mono">06</div>
+      <div class="track-name"><span class="glitch-wrap" data-text="NO KÃMOSHI">NO KÃMOSHI</span></div>
+      <div class="track-tag">EP · Remix License Active</div>
+      <button class="track-link play-toggle" data-target="p6">Play ▾</button>
+    </div>
+    <div class="player-wrap" id="p6">
+      <iframe style="border-radius:0" src="https://open.spotify.com/embed/album/6eTPaExaUw32qnznSIamrt?utm_source=generator&theme=0" width="100%" height="152" frameborder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+    </div>
+    </div>
+
+  </div>
+</section>
+
+<section id="sound">
+  <div class="sound-block">
+    <div class="section-head" style="border-bottom:none;margin-bottom:30px;">
+      <div class="section-title">The <span class="dim">Sound</span></div>
+    </div>
+    <p>Music has always been the constant. Years ago that meant running a site for remixes, uploading tracks one by one for anyone who wanted to hear them. Bezsen808 picks up that same thread — heavily saturated 808s pushed past clean, drums stripped down to almost nothing, vocals that sound ripped from a phone speaker on purpose.</p>
+    <p>Every track is built from scratch in <strong>FL Studio</strong>, by hand, start to finish. Nothing ships untouched.</p>
+    <p>Mastered to streaming spec: <strong>−14 LUFS integrated</strong>, <strong>−1 dBTP</strong> ceiling. Loud enough to hit, clean enough to pass.</p>
+  </div>
+  <div class="sound-block">
+    <div class="section-head" style="border-bottom:none;margin-bottom:30px;">
+      <div class="section-title" style="font-size:clamp(1.4rem,3vw,2rem);">Signal <span class="dim">Chain</span></div>
+    </div>
+    <div class="chain">
+      <div class="chain-row"><span class="step">Sequencing</span><span class="tool">FL Studio / FPC</span></div>
+      <div class="chain-row"><span class="step">808 bass</span><span class="tool">3x Osc</span></div>
+      <div class="chain-row"><span class="step">Saturation</span><span class="tool">Fruity Blood Overdrive</span></div>
+      <div class="chain-row"><span class="step">EQ</span><span class="tool">Parametric EQ 2</span></div>
+      <div class="chain-row"><span class="step">Space</span><span class="tool">Fruity Reeverb 2</span></div>
+      <div class="chain-row"><span class="step">Master / limiting</span><span class="tool">Maximus</span></div>
+    </div>
+  </div>
+</section>
+
+<section id="connect">
+  <div class="section-head">
+    <div class="section-title">Find The <span class="dim">Signal</span></div>
+  </div>
+  <div class="connect-grid">
+    <a class="connect-item" href="https://open.spotify.com/artist/10oMHlbx2jLDiwjqYbNKbc" target="_blank" rel="noopener">
+      <div class="platform mono">Spotify</div>
+      <div class="handle">Bezsen808</div>
+    </a>
+    <a class="connect-item" href="https://www.tiktok.com/@phbezsen" target="_blank" rel="noopener">
+      <div class="platform mono">TikTok</div>
+      <div class="handle">@phbezsen</div>
+    </a>
+    <a class="connect-item" href="https://www.instagram.com/bezsen808" target="_blank" rel="noopener">
+      <div class="platform mono">Instagram</div>
+      <div class="handle">@bezsen808</div>
+    </a>
+    <a class="connect-item" href="https://www.youtube.com/@bezsen808" target="_blank" rel="noopener">
+      <div class="platform mono">YouTube</div>
+      <div class="handle">Bezsen808</div>
+    </a>
+    <a class="connect-item" href="https://www.reddit.com/user/Bezsen808/" target="_blank" rel="noopener">
+      <div class="platform mono">Reddit</div>
+      <div class="handle">u/Bezsen808</div>
+    </a>
+    <a class="connect-item" href="https://linktr.ee/Bezsen808" target="_blank" rel="noopener">
+      <div class="platform mono">All Links</div>
+      <div class="handle">linktr.ee</div>
+    </a>
+  </div>
+</section>
+
+<footer>
+  <div>BEZSEN808 © 2026 — WARSAW</div>
+  <div>BUILT IN THE DARK / MASTERED FOR THE TRUNK</div>
+</footer>
+
+<script>
+  document.querySelectorAll('.play-toggle').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const target = document.getElementById(btn.dataset.target);
+      const isOpen = target.classList.contains('open');
+      document.querySelectorAll('.player-wrap.open').forEach(p => p.classList.remove('open'));
+      document.querySelectorAll('.play-toggle').forEach(b => b.textContent = 'Play ▾');
+      if (!isOpen){
+        target.classList.add('open');
+        btn.textContent = 'Close ▴';
+      }
+    });
+  });
+</script>
+</body>
+</html>
