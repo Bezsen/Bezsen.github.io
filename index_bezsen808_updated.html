@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-H542EPYQGP"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-H542EPYQGP');
+</script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BEZSEN808 — Brazilian Phonk / Bass House</title>
+<meta name="description" content="Bezsen808 — Brazilian phonk & bass house producer from Poland. Dark, underground sound.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#08080c;
+    --bg-raised:#101016;
+    --line:#232330;
+    --text:#f2eee6;
+    --muted:#8a8a96;
+    --pink:#ff2166;
+    --purple:#8b3bff;
+    --cyan:#28e0d6;
+  }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  html{scroll-behavior:smooth;}
+  body{
+    background:var(--bg);
+    color:var(--text);
+    font-family:'JetBrains Mono',monospace;
+    line-height:1.6;
+    overflow-x:hidden;
+  }
+  h1,h2,h3,.display{
+    font-family:'Rajdhani',sans-serif;
+    text-transform:uppercase;
+    letter-spacing:0.02em;
+    font-weight:700;
+  }
+  a{color:inherit;text-decoration:none;}
+  .wrap{max-width:1180px;margin:0 auto;padding:0 28px;}
+  ::selection{background:var(--pink);color:#08080c;}
+
+  /* background texture */
+  body::before{
+    content:"";
+    position:fixed;inset:0;
+    background-image:
+      linear-gradient(rgba(255,33,102,0.035) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255,33,102,0.035) 1px, transparent 1px);
+    background-size:42px 42px;
+    pointer-events:none;
+    z-index:0;
+    mask-image:radial-gradient(ellipse 80% 60% at 50% 0%, #000 30%, transparent 80%);
+  }
+
+  /* header */
+  header{
+    position:sticky;top:0;z-index:50;
+    background:rgba(8,8,12,0.85);
+    backdrop-filter:blur(10px);
+    border-bottom:1px solid var(--line);
+  }
+  header .bar{display:flex;align-items:center;justify-content:space-between;padding:18px 0;}
+  .logo{font-family:'Rajdhani',sans-serif;font-weight:700;font-size:1.3rem;letter-spacing:0.06em;}
+  .logo span{color:var(--pink);}
+  nav{display:flex;gap:28px;font-size:0.78rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--muted);}
+  nav a:hover{color:var(--pink);}
+
+  /* hero */
+  .hero{position:relative;z-index:1;padding:100px 0 60px;}
+  .eyebrow{
+    display:inline-flex;align-items:center;gap:10px;
+    font-size:0.75rem;letter-spacing:0.18em;text-transform:uppercase;color:var(--muted);
+    margin-bottom:28px;
+  }
+  .eyebrow::before{
+    content:"";width:8px;height:8px;border-radius:50%;
+    background:var(--pink);box-shadow:0 0 10px var(--pink);
+    animation:pulse 1.6s ease-in-out infinite;
+  }
+  @keyframes pulse{0%,100%{opacity:1;}50%{opacity:0.25;}}
+  .hero h1{
+    font-size:clamp(2.6rem,8vw,5.6rem);
+    line-height:0.95;
+    color:var(--text);
+  }
+  .hero h1 em{
+    font-style:normal;
+    background:linear-gradient(100deg,var(--pink),var(--purple) 60%,var(--cyan));
+    -webkit-background-clip:text;background-clip:text;color:transparent;
+  }
+  .hero p{max-width:560px;color:var(--muted);margin-top:24px;font-size:0.95rem;}
+
+  .stats{display:flex;gap:48px;margin-top:56px;flex-wrap:wrap;}
+  .stat b{font-family:'Rajdhani',sans-serif;font-size:2.2rem;color:var(--pink);display:block;}
+  .stat span{font-size:0.72rem;color:var(--muted);text-transform:uppercase;letter-spacing:0.1em;}
+
+  /* latest drop banner */
+  .latest{
+    position:relative;z-index:1;
+    margin:60px 0;padding:30px 0;
+    border-top:1px solid var(--line);border-bottom:1px solid var(--line);
+  }
+  .latest .wrap{display:flex;align-items:center;justify-content:space-between;gap:24px;flex-wrap:wrap;}
+  .latest-label{font-size:0.72rem;letter-spacing:0.14em;color:var(--muted);text-transform:uppercase;}
+  .latest-track{display:flex;align-items:baseline;gap:18px;flex-wrap:wrap;}
+  .latest-track h2{font-size:clamp(1.6rem,4vw,2.4rem);}
+  .latest-track .meta{color:var(--muted);font-size:0.82rem;}
+  .btn{
+    display:inline-block;padding:12px 26px;
+    background:var(--pink);color:#08080c;
+    font-family:'Rajdhani',sans-serif;font-weight:700;text-transform:uppercase;
+    letter-spacing:0.08em;font-size:0.85rem;
+    border-radius:2px;
+    transition:transform 0.15s ease, box-shadow 0.15s ease;
+  }
+  .btn:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(255,33,102,0.35);}
+
+  /* releases */
+  section{position:relative;z-index:1;padding:70px 0;}
+  .section-head{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:36px;flex-wrap:wrap;gap:10px;}
+  .section-head h2{font-size:clamp(1.8rem,4vw,2.6rem);}
+  .section-head .count{font-size:0.75rem;color:var(--muted);letter-spacing:0.1em;text-transform:uppercase;}
+
+  .release{
+    display:grid;grid-template-columns:70px 1fr;gap:22px;
+    padding:22px 0;border-top:1px solid var(--line);
+    align-items:start;
+  }
+  .release:last-child{border-bottom:1px solid var(--line);}
+  .release .idx{font-family:'Rajdhani',sans-serif;font-size:1.4rem;color:var(--muted);}
+  .release.is-new .idx{color:var(--pink);}
+  .release-head{display:flex;justify-content:space-between;align-items:baseline;flex-wrap:wrap;gap:8px;margin-bottom:6px;}
+  .release-head h3{font-size:1.15rem;letter-spacing:0.02em;}
+  .release-head .tag{font-size:0.72rem;color:var(--muted);letter-spacing:0.06em;text-transform:uppercase;}
+  .new-pill{
+    display:inline-block;font-size:0.62rem;letter-spacing:0.1em;
+    background:var(--pink);color:#08080c;padding:2px 8px;border-radius:2px;
+    margin-left:8px;vertical-align:middle;font-family:'Rajdhani',sans-serif;font-weight:700;
+  }
+  .player{margin-top:10px;border-radius:6px;overflow:hidden;background:var(--bg-raised);}
+  .player iframe{display:block;width:100%;height:152px;border:0;}
+
+  /* sound section */
+  .sound p{color:var(--muted);max-width:640px;margin-bottom:16px;font-size:0.92rem;}
+  .sound strong{color:var(--text);}
+  .chain{margin-top:40px;border-top:1px solid var(--line);}
+  .chain-row{
+    display:grid;grid-template-columns:1fr 1fr;
+    padding:14px 0;border-bottom:1px solid var(--line);
+    font-size:0.88rem;
+  }
+  .chain-row span:first-child{color:var(--muted);text-transform:uppercase;letter-spacing:0.08em;font-size:0.72rem;}
+
+  /* connect */
+  .links{display:flex;flex-wrap:wrap;gap:14px;margin-top:30px;}
+  .links a{
+    border:1px solid var(--line);padding:12px 20px;border-radius:2px;
+    font-size:0.82rem;letter-spacing:0.04em;
+    transition:border-color 0.15s ease, color 0.15s ease;
+  }
+  .links a:hover{border-color:var(--pink);color:var(--pink);}
+
+  footer{
+    position:relative;z-index:1;
+    border-top:1px solid var(--line);padding:32px 0;
+    display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px;
+    font-size:0.72rem;color:var(--muted);letter-spacing:0.06em;text-transform:uppercase;
+  }
+
+  @media(max-width:640px){
+    .release{grid-template-columns:40px 1fr;}
+    .stats{gap:30px;}
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap bar">
+    <div class="logo">BEZSEN<span>808</span></div>
+    <nav>
+      <a href="#tracks">Tracks</a>
+      <a href="#sound">Sound</a>
+      <a href="#connect">Connect</a>
+    </nav>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="wrap">
+    <div class="eyebrow">Poland — underground transmission</div>
+    <h1>BRAZILIAN<br><em>PHONK.</em></h1>
+    <p>Distorted 808s. Minimal drums. Raw MC vocals pulled out of the dark and run through a Polish basement rig. This is Bezsen808 — built on broken speakers, not clean masters.</p>
+    <div class="stats">
+      <div class="stat"><b>11</b><span>Releases out now</span></div>
+      <div class="stat"><b>5</b><span>Platforms active</span></div>
+      <div class="stat"><b>−14</b><span>LUFS, every master</span></div>
+    </div>
+  </div>
+</section>
+
+<div class="latest">
+  <div class="wrap">
+    <div>
+      <div class="latest-label">Newest Drop</div>
+      <div class="latest-track">
+        <h2>FUNK TEMPO</h2>
+        <span class="meta">EP · Out 07.08.2026</span>
+      </div>
+    </div>
+    <a class="btn" href="https://open.spotify.com/album/5KemLnKqRg7XpPUsBrSw4y" target="_blank" rel="noopener">Listen →</a>
+  </div>
+</div>
+
+<section id="tracks">
+  <div class="wrap">
+    <div class="section-head">
+      <h2>Latest Drops</h2>
+      <div class="count">11 Released</div>
+    </div>
+
+    <div class="release is-new">
+      <div class="idx">01</div>
+      <div>
+        <div class="release-head">
+          <h3>MTG SAY MY NAME <span class="new-pill">New</span></h3>
+          <span class="tag">EP · 25.09.2026</span>
+        </div>
+        <div class="player">
+          <iframe src="https://open.spotify.com/embed/album/5KemLnKqRg7XpPUsBrSw4y?utm_source=generator&theme=0" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy" title="MTG Say My Name — Spotify player"></iframe>
+        </div>
+      </div>
+    </div>
+
+    <div class="release">
+      <div class="idx">02</div>
+      <div>
+        <div class="release-head">
+          <h3>FUNK TEMPO</h3>
+          <span class="tag">EP · 07.08.2026</span>
+        </div>
+        <div class="player">
+          <iframe src="https://open.spotify.com/embed/album/3zRhv4BHMHDJOAsBn9TBYd?utm_source=generator&theme=0" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+        </div>
+      </div>
+    </div>
+
+    <div class="release is-new">
+      <div class="idx">03</div>
+      <div>
+        <div class="release-head">
+          <h3>MONTAGEM TEM <span class="new-pill">New</span></h3>
+          <span class="tag">EP · 24.07.2026</span>
+        </div>
+        <div class="player">
+          <iframe src="https://open.spotify.com/embed/album/648JdpMtQa5N1atpJiq663?utm_source=generator&theme=0" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+        </div>
+      </div>
+    </div>
+
+    <div class="release is-new">
+      <div class="idx">04</div>
+      <div>
+        <div class="release-head">
+          <h3>MONTAGEM ENGASGADO <span class="new-pill">New</span></h3>
+          <span class="tag">EP · 10.07.2026</span>
+        </div>
+        <div class="player">
+          <iframe src="https://open.spotify.com/embed/album/7lbrvXSrKm083iMJFIkhKR?utm_source=generator&theme=0" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+        </div>
+      </div>
+    </div>
+
+    <div class="release">
+      <div class="idx">05</div>
+      <div>
+        <div class="release-head">
+          <h3>MONTAGEM NEØN X</h3>
+          <span class="tag">w/ B3Z · EP · 19.06.2026</span>
+        </div>
+        <div class="player">
+          <iframe src="https://open.spotify.com/embed/album/1k4zlKDhecNAB1tjka5hqv?utm_source=generator&theme=0" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+        </div>
+      </div>
+    </div>
+
+    <div class="release">
+      <div class="idx">06</div>
+      <div>
+        <div class="release-head">
+          <h3>VOID SIGNAL</h3>
+          <span class="tag">EP · 4 Tracks</span>
+        </div>
+        <div class="player">
+          <iframe src="https://open.spotify.com/embed/album/7jI8NHVKOBlfFPJ4BCL6D8?utm_source=generator&theme=0" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+        </div>
+      </div>
+    </div>
+
+    <div class="release">
+      <div class="idx">07</div>
+      <div>
+        <div class="release-head">
+          <h3>TORRA PHANTOM</h3>
+          <span class="tag">EP · 3 Versions</span>
+        </div>
+        <div class="player">
+          <iframe src="https://open.spotify.com/embed/album/3EcaIvZOMyN3KRnoXmSDeT?utm_source=generator&theme=0" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+        </div>
+      </div>
+    </div>
+
+    <div class="release">
+      <div class="idx">08</div>
+      <div>
+        <div class="release-head">
+          <h3>NO FUNDO</h3>
+          <span class="tag">EP</span>
+        </div>
+        <div class="player">
+          <iframe src="https://open.spotify.com/embed/album/07LXciUHPZmRNfNO4hdTru?utm_source=generator&theme=0" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+        </div>
+      </div>
+    </div>
+
+    <div class="release">
+      <div class="idx">09</div>
+      <div>
+        <div class="release-head">
+          <h3>MONTAGEM BEAT</h3>
+          <span class="tag">EP · Bass House</span>
+        </div>
+        <div class="player">
+          <iframe src="https://open.spotify.com/embed/album/5qRnhoPJpRp88cKLJ4bO6X?utm_source=generator&theme=0" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+        </div>
+      </div>
+    </div>
+
+    <div class="release">
+      <div class="idx">10</div>
+      <div>
+        <div class="release-head">
+          <h3>NIGHTMARE BOTA</h3>
+          <span class="tag">Single · Brazilian Phonk</span>
+        </div>
+        <div class="player">
+          <iframe src="https://open.spotify.com/embed/album/5lUEBoAVZr468iVUus8ibM?utm_source=generator&theme=0" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+        </div>
+      </div>
+    </div>
+
+    <div class="release">
+      <div class="idx">11</div>
+      <div>
+        <div class="release-head">
+          <h3>NO KÃMOSHI</h3>
+          <span class="tag">EP · Remix License Active</span>
+        </div>
+        <div class="player">
+          <iframe src="https://open.spotify.com/embed/album/6eTPaExaUw32qnznSIamrt?utm_source=generator&theme=0" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<section id="sound" class="sound">
+  <div class="wrap">
+    <div class="section-head"><h2>The Sound</h2></div>
+    <p>Music has always been the constant. Years ago that meant running a site for remixes, uploading tracks one by one for anyone who wanted to hear them. Bezsen808 picks up that same thread — heavily saturated 808s pushed past clean, drums stripped down to almost nothing, vocals that sound ripped from a phone speaker on purpose.</p>
+    <p>Every track is built from scratch in <strong>FL Studio</strong>, by hand, start to finish. Nothing ships untouched.</p>
+    <p>Mastered to streaming spec: <strong>−14 LUFS integrated</strong>, <strong>−1 dBTP</strong> ceiling. Loud enough to hit, clean enough to pass.</p>
+
+    <div class="chain">
+      <div class="chain-row"><span>Sequencing</span><span>FL Studio / FPC</span></div>
+      <div class="chain-row"><span>808 bass</span><span>3x Osc</span></div>
+      <div class="chain-row"><span>Saturation</span><span>Fruity Blood Overdrive</span></div>
+      <div class="chain-row"><span>EQ</span><span>Parametric EQ 2</span></div>
+      <div class="chain-row"><span>Space</span><span>Fruity Reeverb 2</span></div>
+      <div class="chain-row"><span>Master / limiting</span><span>Maximus</span></div>
+    </div>
+  </div>
+</section>
+
+<section id="connect">
+  <div class="wrap">
+    <div class="section-head"><h2>Find The Signal</h2></div>
+    <div class="links">
+      <a href="https://open.spotify.com/artist/10oMHlbx2jLDiwjqYbNKbc" target="_blank" rel="noopener">Spotify — Bezsen808</a>
+      <a href="https://www.tiktok.com/@phbezsen?is_from_webapp=1&sender_device=pc" target="_blank" rel="noopener">TikTok — @phbezsen</a>
+      <a href="https://www.instagram.com/bezsen808" target="_blank" rel="noopener">Instagram — @bezsen808</a>
+      <a href="https://www.youtube.com/@bezsen808" target="_blank" rel="noopener">YouTube — Bezsen808</a>
+      <a href="https://www.reddit.com/user/Bezsen808/" target="_blank" rel="noopener">Reddit — u/Bezsen808</a>
+      <a href="https://linktr.ee/Bezsen808" target="_blank" rel="noopener">All Links — linktr.ee</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap" style="display:flex;justify-content:space-between;width:100%;flex-wrap:wrap;gap:10px;">
+    <span>BEZSEN808 © 2026 — POLAND</span>
+    <span>BUILT IN THE DARK / MASTERED FOR THE TRUNK</span>
+  </div>
+</footer>
+
+</body>
+</html>
